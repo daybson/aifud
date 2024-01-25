@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aifud", "Aifud\Aifud.csproj", "{20265620-A1D8-471D-BFC5-2B8F6F45DC8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20265620-A1D8-471D-BFC5-2B8F6F45DC8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20265620-A1D8-471D-BFC5-2B8F6F45DC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20265620-A1D8-471D-BFC5-2B8F6F45DC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20265620-A1D8-471D-BFC5-2B8F6F45DC8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {296A5164-66CE-4EB9-B628-846F257973DB}
+	EndGlobalSection
+EndGlobal
