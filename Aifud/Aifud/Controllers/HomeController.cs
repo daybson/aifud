@@ -1,4 +1,6 @@
 using Aifud.Models;
+using Aifud.Repositories.Interfaces;
+using Aifud.ViewModel;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,21 @@ namespace Aifud.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILancheRepository lancheRepository;
+
+        public HomeController(ILancheRepository lancheRepository)
+        {
+            this.lancheRepository = lancheRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var homeVM = new HomeViewModel
+            {
+                LanchesPreferidos = lancheRepository.GetLanchesPreferidos()
+            };
+
+            return View(homeVM);
         }
 
 

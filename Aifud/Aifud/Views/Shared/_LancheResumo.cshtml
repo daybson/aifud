@@ -4,9 +4,17 @@
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="@Model.ImagemUrl" />
         <div class="card-body">
-            <h5 class="card-title">@Model.Nome</h5>
-            <p class="card-text">@Model.Preco.ToString("c")</p>
+            @* <h5 class="card-title">@Model.Nome</h5> *@
+            <a asp-controller="Lanche" asp-action="Details"
+               asp-route-lancheId="@Model.Id"><h5>@Model.Nome</h5></a>
+            <p class="card-text" style="color:forestgreen">@Model.Preco.ToString("c")</p>
             <h6 class="card-footer">@Model.DescricaoCurta</h6>
+            
+            <p class="button">
+                <a class="btn btn-primary" id="cardButtonComprar"
+                   asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinho"
+                   asp-route-lancheId="@Model.Id">Incluir no carrinho</a>
+            </p>
         </div>
     </div>
 </div>

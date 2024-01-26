@@ -22,6 +22,7 @@ namespace Aifud.Models
             var context = services.GetService<AppDbContext>();
 
             var carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
+            session.SetString("CarrinhoId", carrinhoId);
 
             return new CarrinhoCompra(context)
             {
