@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 #region Injeção de dependencias
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
+builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped(serviceProvider => CarrinhoCompra.GetCarrinho(serviceProvider));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 #endregion

@@ -32,7 +32,7 @@ namespace Aifud.Controllers
                     .OrderBy(l => l.Nome)
                     .ToList();
             }
-            categoriaAtual =  categoria?.ToUpperInvariant() ?? "Todos";
+            categoriaAtual = categoria?.ToUpperInvariant() ?? "Todos";
 
             var lanchesVM = new LancheListViewModel
             {
@@ -48,6 +48,44 @@ namespace Aifud.Controllers
         {
             var lanche = lancheRepository.GetLanche(lancheId);
             return View(lanche);
+        }
+
+
+        public IActionResult Search(string searchString)
+        {
+            IEnumerable<Lanche> lanches;
+            string categoriaAtual;
+
+            if (string.IsNullOrWhiteSpace(searchString))
+            {
+                lanches = lancheRepository.GetLanches()
+                    .OrderBy(l => l.Nome);
+                categoriaAtual = "Todos";
+            }
+            else
+            {
+                lanches = lancheRepository.GetLanches()
+                    .Where(l => l.Nome.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    .OrderBy(l => l.Nome)
+                    .ToList();
+
+                if (lanches.Any())
+                {
+                    categoriaAtual = "Lanches";
+                }
+                else
+                {
+                    categoriaAtual = "Nenhum lanche encontrado";
+                }
+            }            
+
+            var lanchesVM = new LancheListViewModel
+            {
+                Lanches = lanches,
+                Categoria = categoriaAtual
+            };
+
+            return View("List", lanchesVM);
         }
     }
 }

@@ -21,19 +21,27 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        
+
                         <li class="nav-item">
                             <a class="nav-link text-danger" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
                         @* <li class="nav-item">
-                            <a class="nav-link text-danger" asp-area="" asp-controller="Lanche" asp-action="List">Lanches</a>
+                        <a class="nav-link text-danger" asp-area="" asp-controller="Lanche" asp-action="List">Lanches</a>
                         </li> *@
 
                         <li class="nav-item">
                             <a class="nav-link text-danger" asp-controller="Contato" asp-action="Index">Contato</a>
                         </li>
                         @await Component.InvokeAsync("CategoriaMenu")
+                        &nbsp&nbsp
+                        <form class="navbar-form navbar-right" asp-controller="Lanche" asp-action="Search" method="get">
+                            <div class="btn-group">
+                                <input type="text" class="form-control" placeholder="Procurar" name="searchString" value="@ViewData["searchString"]" />
+                                <button class="btn btn-outline-danger">Pesquisar</button>
+                            </div>
+                        </form>
+                        &nbsp&nbsp
                         @await Component.InvokeAsync("CarrinhoCompraResumo")
                     </ul>
                 </div>
@@ -48,7 +56,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Aifud 
+            &copy; 2024 - Aifud
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
