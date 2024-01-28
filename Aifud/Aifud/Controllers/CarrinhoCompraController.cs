@@ -2,6 +2,7 @@
 using Aifud.Repositories.Interfaces;
 using Aifud.ViewModel;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aifud.Controllers
@@ -33,7 +34,7 @@ namespace Aifud.Controllers
             return View(carrinhoCompraVM);
         }
 
-
+        [Authorize]
         public IActionResult AdicionarItemNoCarrinho(int lancheId)
         {
             var lanche = lancheRepository.GetLanche(lancheId);
@@ -44,6 +45,7 @@ namespace Aifud.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult RemoverItemDoCarrinho(int lancheId)
         {
             var lanche = lancheRepository.GetLanche(lancheId);
