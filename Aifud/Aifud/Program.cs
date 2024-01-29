@@ -2,6 +2,7 @@ using Aifud.Context;
 using Aifud.Models;
 using Aifud.Repositories;
 using Aifud.Repositories.Interfaces;
+using Aifud.Services;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,16 @@ builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped(serviceProvider => CarrinhoCompra.GetCarrinho(serviceProvider));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 #endregion
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy =>
+    {
+        policy.RequireRole("Admin");
+    });
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -43,17 +53,29 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+using var scope = app.Services.CreateScope();
+var seedsRoleUser = scope.ServiceProvider.GetRequiredService<ISeedUserRoleInitial>();
+seedsRoleUser.SeedRoles();
+seedsRoleUser.SeedUser();
+
 app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
+
 app.MapControllerRoute(
-    name:"categoriaFiltro",
+      name: "areas",
+      pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+    );
+
+app.MapControllerRoute(
+    name: "categoriaFiltro",
     pattern: "Lanche/{action}/{categoria?}",
     defaults: new
     {
-        controller = "Lanche", action = "List"
+        controller = "Lanche",
+        action = "List"
     });
 
 app.MapControllerRoute(

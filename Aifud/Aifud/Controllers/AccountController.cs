@@ -76,6 +76,7 @@ namespace Aifud.Controllers
                 Email = registroViewModel.UserName,
                 EmailConfirmed = true
             };
+            await userManager.AddToRoleAsync(user, "Cliente");
             var result = await userManager.CreateAsync(user, registroViewModel.Password);
 
             if (result.Succeeded)
@@ -98,6 +99,12 @@ namespace Aifud.Controllers
             HttpContext.User = null;
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
