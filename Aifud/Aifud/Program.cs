@@ -1,3 +1,4 @@
+using Aifud.Areas.Admin.Services;
 using Aifud.Context;
 using Aifud.Models;
 using Aifud.Repositories;
@@ -6,6 +7,8 @@ using Aifud.Services;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+using ReflectionIT.Mvc.Paging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,7 @@ builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped(serviceProvider => CarrinhoCompra.GetCarrinho(serviceProvider));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+builder.Services.AddScoped<RelatorioVendasService>();
 #endregion
 
 builder.Services.AddAuthorization(options =>
@@ -34,6 +38,12 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddPaging(options =>
+{
+    options.ViewName = "Bootstrap5";
+    options.PageParameterName = "pageindex";
+});
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();

@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" asp-action="RelatorioVendasSimples">
+            <fieldset>
+                <legend>Relatório de vendas</legend>
+
+                <div class="form-group">
+                    <label for="min" class="col-lg-6 control-label">Início</label>
+                    <div class="col-lg-10">
+                        <input type="date" name="min" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="max" class="col-lg-6 control-label">Fim</label>
+                    <div class="col-lg-10">
+                        <input type="date" name="max" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>

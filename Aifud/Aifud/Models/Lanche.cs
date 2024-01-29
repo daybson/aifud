@@ -50,7 +50,8 @@ namespace Aifud.Models
         [Display(Name = "Em estoque?")]
         public bool EmEstoque { get; set; }
 
+        [Display(Name = "Categorias")]
         public int CategoriaId { get; set; }
-        public virtual Categoria Categoria { get; set; }
+        public virtual Categoria? Categoria { get; set; }
     }
 }
