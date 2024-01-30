@@ -19,6 +19,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<ConfigurationImages>(
+        builder.Configuration.GetSection("ConfigurationPastaImagens"));
+
 #region Injeção de dependencias
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();

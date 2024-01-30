@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["title"] = "Uploadfiles";
+}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        @if (ViewData["Erro"] != null)
+        {
+            <img src="~/images/erro.webp" width="150" height="150" />
+            <h4>@ViewData["Erro"]</h4>
+        }
+    </div>
+
+    <div class="container">
+        @if (ViewData["Resultado"] != null)
+        {
+            <h4>@ViewData["Resultado"]</h4>
+            <hr />
+            @if (ViewBag.Arquivos != null)
+            {
+                @foreach (string arq in ViewBag.Arquivos)
+                {
+                    <li>@arq</li>
+                }
+            }
+        }
+    </div>
+
+</div>
