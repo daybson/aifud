@@ -27,7 +27,7 @@ builder.Services.Configure<ConfigurationImages>(
 FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
 
 #region Injeção de dependencias
-
+builder.Services.AddHttpClient<ConsultaCepService>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
@@ -37,6 +37,7 @@ builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddScoped<RelatorioVendasService>();
 builder.Services.AddScoped<GraficoVendasService>();
 builder.Services.AddScoped<RelatorioLanchesService>();
+builder.Services.AddScoped<ConsultaCepService>();
 builder.Services.AddFastReport();
 #endregion
 
@@ -80,6 +81,7 @@ using var scope = app.Services.CreateScope();
 var seedsRoleUser = scope.ServiceProvider.GetRequiredService<ISeedUserRoleInitial>();
 seedsRoleUser.SeedRoles();
 seedsRoleUser.SeedUser();
+
 
 app.UseSession();
 

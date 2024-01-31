@@ -1,6 +1,11 @@
-﻿@model Pedido
+﻿@using Aifud.Services
+@model Pedido
+@inject ConsultaCepService CepService
 
 <h1>Concluir pedido</h1>
+@{
+    var endereco = await @CepService.ConsultaCep("35170309");
+}
 
 <form asp-action="Checkout" asp-controller="Pedido" class="form-horizontal" role="form">
 
@@ -20,7 +25,7 @@
     <div class="row">
         <div class="form-group col-md-8">
             <label asp-for="Endereco" class="control-label"></label>
-            <input asp-for="Endereco" class="form-control" />
+            <input id="ruaInput" asp-for="Endereco" class="form-control" />
             <span asp-validation-for="Endereco" class="text-danger"></span>
         </div>
         <div class="form-group col-md-2">
@@ -38,17 +43,17 @@
     <div class="row">
         <div class="form-group col-md-2">
             <label asp-for="CEP" class="control-label"></label>
-            <input asp-for="CEP" class="form-control" />
+            <input asp-for="CEP" class="form-control" id="cepInput" onChange="OnChangeCep()" />
             <span asp-validation-for="CEP" class="text-danger"></span>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="Cidade" class="control-label"></label>
-            <input asp-for="Cidade" class="form-control" />
+            <input id="cidadeInput" asp-for="Cidade" class="form-control" />
             <span asp-validation-for="Cidade" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label asp-for="Estado" class="control-label"></label>
-            <input asp-for="Estado" class="form-control" />
+            <input id="estadoInput" asp-for="Estado" class="form-control" />
             <span asp-validation-for="Estado" class="text-danger"></span>
         </div>
     </div>
@@ -75,3 +80,34 @@
     </div>
 
 </form>
+
+<script>
+    function OnChangeCep() {
+        var cep = document.getElementById("cepInput").value;
+
+        var cidade = document.getElementById("cidadeInput");
+        var estado = document.getElementById("estadoInput");
+        var rua = document.getElementById("ruaInput");
+
+        $.ajax({
+            url: '@Url.Action("GetAddress", "Cep")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+            dataType: "json", //to work with json format
+            type: "GET", //to do a post request
+            cache: false, //avoid caching results
+            data: { 'cep': cep }, // here you can pass arguments to your request if you need
+            success: function (data) {
+                // data is your result from controller
+                //alert(data);
+                cep.value = data.cep;
+                cidade.value = data.city;
+                estado.value = data.state;
+                rua.value = data.street + ', ' + data.neighborhood;
+            },
+            error: function (xhr) {
+                cep.value = '';
+                cep.focus();
+
+            }
+        });
+    }
+</script>
