@@ -30,6 +30,7 @@ builder.Services.AddScoped(serviceProvider => CarrinhoCompra.GetCarrinho(service
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddScoped<RelatorioVendasService>();
+builder.Services.AddScoped<GraficoVendasService>();
 #endregion
 
 builder.Services.AddAuthorization(options =>
