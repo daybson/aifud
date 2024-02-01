@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace Aifud.ViewModel
 {
@@ -15,5 +17,7 @@ namespace Aifud.ViewModel
         public string Password { get; set;}
 
         public string? ReturnUrl { get; set;}
+
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
     }
 }

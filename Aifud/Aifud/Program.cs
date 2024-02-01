@@ -41,6 +41,14 @@ builder.Services.AddScoped<ConsultaCepService>();
 builder.Services.AddFastReport();
 #endregion
 
+builder.Services.AddAuthentication()
+        .AddGoogle(options =>
+        {
+            var googleAuthSection = builder.Configuration.GetSection("Authentication");
+            options.ClientId = googleAuthSection["ClientId"];
+            options.ClientSecret = googleAuthSection["ClientSecret"];
+        });
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy =>
