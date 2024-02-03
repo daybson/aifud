@@ -12,7 +12,16 @@ using Microsoft.EntityFrameworkCore;
 
 using ReflectionIT.Mvc.Paging;
 
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Especifique a cultura desejada (no exemplo, pt-BR para português do Brasil)
+var cultureInfo = new CultureInfo("pt-BR"); 
+cultureInfo.NumberFormat.NumberDecimalSeparator = ",";
+cultureInfo.NumberFormat.NumberGroupSeparator = ".";
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

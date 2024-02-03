@@ -18,6 +18,6 @@ namespace Aifud.ViewModel
 
         public string? ReturnUrl { get; set;}
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public IList<AuthenticationScheme>? ExternalLogins { get; set; }
     }
 }
