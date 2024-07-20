@@ -1,4 +1,5 @@
-﻿using Aifud.Areas.Admin.FastReportUtils;
+﻿/*
+using Aifud.Areas.Admin.FastReportUtils;
 using Aifud.Areas.Admin.Services;
 
 using FastReport.Data;
@@ -74,3 +75,4 @@ namespace Aifud.Areas.Admin.Controllers
         }
     }
 }
+*/

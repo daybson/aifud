@@ -5,7 +5,7 @@ using Aifud.Repositories;
 using Aifud.Repositories.Interfaces;
 using Aifud.Services;
 
-using FastReport.Data;
+//using FastReport.Data;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +33,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 builder.Services.Configure<ConfigurationImages>(
         builder.Configuration.GetSection("ConfigurationPastaImagens"));
 
-FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
+//FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
 
 #region Injeção de dependencias
 builder.Services.AddHttpClient<ConsultaCepService>();
@@ -47,7 +47,7 @@ builder.Services.AddScoped<RelatorioVendasService>();
 builder.Services.AddScoped<GraficoVendasService>();
 builder.Services.AddScoped<RelatorioLanchesService>();
 builder.Services.AddScoped<ConsultaCepService>();
-builder.Services.AddFastReport();
+//builder.Services.AddFastReport();
 #endregion
 
 builder.Services.AddAuthentication()
@@ -90,7 +90,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseFastReport();
+//app.UseFastReport();
 
 app.UseRouting();
 
